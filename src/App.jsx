@@ -3,6 +3,15 @@ import { motion, useInView, useScroll, useTransform, AnimatePresence } from 'fra
 import { FaBars, FaTimes, FaChevronDown, FaBed, FaBath, FaCar, FaRuler, FaPhone, FaEnvelope, FaMapMarkerAlt, FaWhatsapp, FaInstagram, FaSearch, FaHeart, FaArrowRight, FaStar } from 'react-icons/fa'
 import { MdApartment, MdVilla, MdLocationCity, MdHandshake } from 'react-icons/md'
 
+const propertyImages = [
+  'https://images.unsplash.com/photo-1564078516393-cf04bd966897?w=600&q=80&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=600&q=80&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1613545325268-9265e1609167?w=600&q=80&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=600&q=80&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1682184805271-11671b7ecf4c?w=600&q=80&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1560184897-ae75f418493e?w=600&q=80&auto=format&fit=crop',
+]
+
 const properties = [
   {
     name: 'Penthouse Jardins',
@@ -90,9 +99,14 @@ const PropertyCard = ({ property, index }) => {
       transition={{ duration: 0.7, delay: index * 0.1 }}
       className="property-card bg-white rounded-2xl overflow-hidden shadow-sm border border-[#e8e0d0] cursor-pointer"
     >
-      <div className={`aspect-[4/3] bg-gradient-to-br ${property.gradient} relative flex items-center justify-center`}>
-        <span className="text-6xl">{property.emoji}</span>
-        <div className="property-overlay absolute inset-0 bg-[#1a1208]/60 flex items-center justify-center">
+      <div className="aspect-video overflow-hidden relative group">
+        <img
+          src={propertyImages[index % propertyImages.length]}
+          alt={property.name}
+          loading="lazy"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        />
+        <div className="property-overlay absolute inset-0 bg-[#1a1208]/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <div className="flex gap-3">
             <button className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-[#b8860b] hover:text-white transition-colors">
               <FaHeart size={14} className="text-[#3d3020]" />
@@ -102,11 +116,11 @@ const PropertyCard = ({ property, index }) => {
             </button>
           </div>
         </div>
-        <div className="absolute top-4 left-4">
-          <span className="px-3 py-1 bg-[#b8860b] text-white text-xs font-medium rounded-full font-sans">{property.tag}</span>
+        <div className="absolute top-3 left-3">
+          <span className="px-3 py-1 bg-[#b8860b] text-white text-xs font-bold rounded-full">{property.type || 'Premium'}</span>
         </div>
-        <div className="absolute top-4 right-4">
-          <span className="px-3 py-1 bg-[#1a1208]/70 text-[#f5d76e] text-xs font-medium rounded-full font-sans backdrop-blur-sm">{property.type}</span>
+        <div className="absolute top-3 right-3">
+          <span className="px-3 py-1 bg-[#1a1208]/70 text-[#f5d76e] text-xs font-medium rounded-full font-sans backdrop-blur-sm">{property.tag}</span>
         </div>
       </div>
       <div className="p-6">
@@ -253,7 +267,15 @@ export default function App() {
 
       {/* Hero */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#1a1208] via-[#2c1a08] to-[#1a1208]" />
+        <motion.div style={{ y: heroY }} className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1564078516393-cf04bd966897?w=1920&q=80&auto=format&fit=crop"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover opacity-30"
+          />
+        </motion.div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1a1208]/90 via-[#1a1208]/70 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#1a1208] via-[#2c1a08]/60 to-transparent" />
         <div
           className="absolute inset-0"
           style={{ backgroundImage: 'radial-gradient(ellipse at 30% 50%, rgba(184,134,11,0.12) 0%, transparent 60%)' }}
@@ -262,7 +284,7 @@ export default function App() {
           className="absolute inset-0 opacity-5"
           style={{ backgroundImage: 'repeating-linear-gradient(45deg, #b8860b 0px, #b8860b 1px, transparent 1px, transparent 40px)' }}
         />
-        <motion.div style={{ y: heroY }} className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-24">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <motion.p
@@ -349,7 +371,7 @@ export default function App() {
               ))}
             </motion.div>
           </div>
-        </motion.div>
+        </div>
 
         <motion.div
           initial={{ opacity: 0 }}
@@ -491,22 +513,19 @@ export default function App() {
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="grid grid-cols-2 gap-4"
+            className="relative rounded-2xl overflow-hidden h-[500px]"
           >
-            {[
-              { bg: 'from-amber-900 to-stone-800', emoji: '🏆', title: 'Prêmio Melhor Imobiliária SP 2023' },
-              { bg: 'from-stone-800 to-zinc-900', emoji: '🤝', title: 'Parceria exclusiva Sotheby\'s' },
-              { bg: 'from-green-900 to-stone-900', emoji: '🌱', title: 'Certificação ESG Imobiliário' },
-              { bg: 'from-slate-800 to-stone-900', emoji: '📊', title: 'Top 10 Imobiliárias Brasil' },
-            ].map((item, i) => (
-              <div
-                key={i}
-                className={`aspect-square bg-gradient-to-br ${item.bg} rounded-2xl flex flex-col items-center justify-center gap-3 p-6 text-center border border-white/5`}
-              >
-                <span className="text-3xl">{item.emoji}</span>
-                <span className="text-white/80 text-xs font-sans leading-tight">{item.title}</span>
-              </div>
-            ))}
+            <img
+              src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=900&q=80&auto=format&fit=crop"
+              alt="interior luxuoso"
+              loading="lazy"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1a1208] to-transparent" />
+            <div className="absolute bottom-6 left-6 right-6">
+              <p className="text-white font-bold text-xl">Interiores de Alto Padrão</p>
+              <p className="text-[#b8860b] text-sm mt-1">Curadoria exclusiva para cada cliente</p>
+            </div>
           </motion.div>
         </div>
       </section>
