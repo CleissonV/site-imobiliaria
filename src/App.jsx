@@ -204,8 +204,11 @@ export default function App() {
       {/* Nav */}
       <nav className={`fixed w-full z-40 transition-all duration-500 ${scrolled ? 'bg-[#f7f4ef]/95 backdrop-blur-md shadow-sm border-b border-[#e8e0d0] py-3' : 'py-5'}`}>
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          <a href="#" className="font-serif text-xl text-[#1a1208]">
-            Prestige <span className="text-[#b8860b]">Imóveis</span>
+          <a href="#" className="flex items-center gap-2.5 font-serif text-xl text-[#1a1208]">
+            <svg viewBox="0 0 32 32" className="w-6 h-6" fill="none" stroke="#b8860b" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M6 15L16 6l10 9" /><path d="M9 14v11h14V14" /><path d="M14 25v-6h4v6" />
+            </svg>
+            <span>Prestige <span className="text-[#b8860b]">Imóveis</span></span>
           </a>
           <div className="hidden md:flex items-center gap-8">
             {['Imóveis', 'Serviços', 'Sobre', 'Contato'].map(item => (
