@@ -20,9 +20,7 @@ const properties = [
     beds: 4, baths: 5, cars: 3, area: '520m²',
     type: 'Cobertura',
     tag: 'Exclusivo',
-    gradient: 'from-stone-700 via-stone-800 to-stone-900',
-    emoji: '🏙️'
-  },
+    gradient: 'from-stone-700 via-stone-800 to-stone-900'  },
   {
     name: 'Casa Alto da Boa Vista',
     price: 'R$ 5.200.000',
@@ -30,9 +28,7 @@ const properties = [
     beds: 5, baths: 6, cars: 4, area: '850m²',
     type: 'Casa',
     tag: 'Novo',
-    gradient: 'from-green-900 via-emerald-900 to-stone-900',
-    emoji: '🌿'
-  },
+    gradient: 'from-green-900 via-emerald-900 to-stone-900'  },
   {
     name: 'Apartamento Itaim',
     price: 'R$ 3.800.000',
@@ -40,9 +36,7 @@ const properties = [
     beds: 3, baths: 4, cars: 3, area: '280m²',
     type: 'Apartamento',
     tag: 'Destaque',
-    gradient: 'from-slate-800 via-zinc-800 to-stone-900',
-    emoji: '🏢'
-  },
+    gradient: 'from-slate-800 via-zinc-800 to-stone-900'  },
   {
     name: 'Villa Alphaville',
     price: 'R$ 4.600.000',
@@ -50,9 +44,7 @@ const properties = [
     beds: 6, baths: 7, cars: 5, area: '1.200m²',
     type: 'Villa',
     tag: 'Premium',
-    gradient: 'from-amber-900 via-stone-900 to-zinc-900',
-    emoji: '🏡'
-  },
+    gradient: 'from-amber-900 via-stone-900 to-zinc-900'  },
   {
     name: 'Studio Vila Nova',
     price: 'R$ 1.200.000',
@@ -60,9 +52,7 @@ const properties = [
     beds: 1, baths: 2, cars: 1, area: '80m²',
     type: 'Studio',
     tag: 'Oportunidade',
-    gradient: 'from-neutral-800 via-stone-800 to-zinc-900',
-    emoji: '✨'
-  },
+    gradient: 'from-neutral-800 via-stone-800 to-zinc-900'  },
   {
     name: 'Cobertura Moema',
     price: 'R$ 6.500.000',
@@ -70,9 +60,7 @@ const properties = [
     beds: 4, baths: 5, cars: 4, area: '420m²',
     type: 'Cobertura',
     tag: 'Exclusivo',
-    gradient: 'from-rose-900 via-stone-900 to-zinc-900',
-    emoji: '🌇'
-  },
+    gradient: 'from-rose-900 via-stone-900 to-zinc-900'  },
 ]
 
 const services = [
@@ -268,11 +256,13 @@ export default function App() {
       {/* Hero */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         <motion.div style={{ y: heroY }} className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1564078516393-cf04bd966897?w=1920&q=80&auto=format&fit=crop"
-            alt=""
-            className="absolute inset-0 w-full h-full object-cover opacity-30"
-          />
+          <video
+            autoPlay loop muted playsInline
+            poster="https://images.unsplash.com/photo-1564078516393-cf04bd966897?w=1920&q=80&auto=format&fit=crop"
+            className="absolute inset-0 w-full h-full object-cover opacity-35"
+          >
+            <source src="https://assets.mixkit.co/videos/8603/8603-720.mp4" type="video/mp4" />
+          </video>
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-r from-[#1a1208]/90 via-[#1a1208]/70 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-br from-[#1a1208] via-[#2c1a08]/60 to-transparent" />
@@ -355,18 +345,21 @@ export default function App() {
               className="hidden lg:grid grid-cols-2 gap-4"
             >
               {[
-                { label: 'Jardins', price: 'R$ 8.9M', gradient: 'from-amber-900 to-stone-900', emoji: '🏙️' },
-                { label: 'Itaim Bibi', price: 'R$ 3.8M', gradient: 'from-slate-800 to-stone-900', emoji: '🏢' },
-                { label: 'Moema', price: 'R$ 6.5M', gradient: 'from-rose-900 to-zinc-900', emoji: '🌇' },
-                { label: 'Alphaville', price: 'R$ 4.6M', gradient: 'from-green-900 to-stone-900', emoji: '🌿' },
+                { label: 'Jardins', price: 'R$ 8.9M', img: 'https://images.unsplash.com/photo-1564078516393-cf04bd966897?w=500&q=80&auto=format&fit=crop' },
+                { label: 'Itaim Bibi', price: 'R$ 3.8M', img: 'https://images.unsplash.com/photo-1613545325268-9265e1609167?w=500&q=80&auto=format&fit=crop' },
+                { label: 'Moema', price: 'R$ 6.5M', img: 'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=500&q=80&auto=format&fit=crop' },
+                { label: 'Alphaville', price: 'R$ 4.6M', img: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=500&q=80&auto=format&fit=crop' },
               ].map((item, i) => (
                 <div
                   key={i}
-                  className={`aspect-square bg-gradient-to-br ${item.gradient} rounded-xl flex flex-col items-center justify-center gap-2 border border-white/10 hover:border-[#b8860b]/50 transition-colors cursor-pointer`}
+                  className="group relative aspect-square rounded-xl overflow-hidden border border-white/10 hover:border-[#b8860b]/50 transition-colors cursor-pointer"
                 >
-                  <span className="text-3xl">{item.emoji}</span>
-                  <span className="text-white text-sm font-serif">{item.label}</span>
-                  <span className="text-[#f5d76e] text-xs font-sans">{item.price}</span>
+                  <img src={item.img} alt={item.label} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1a1208]/90 via-[#1a1208]/20 to-transparent" />
+                  <div className="absolute bottom-4 left-4">
+                    <span className="block text-white text-sm font-serif">{item.label}</span>
+                    <span className="block text-[#f5d76e] text-xs font-sans mt-0.5">{item.price}</span>
+                  </div>
                 </div>
               ))}
             </motion.div>
