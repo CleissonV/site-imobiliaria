@@ -204,7 +204,7 @@ export default function App() {
       {/* Nav */}
       <nav className={`fixed w-full z-40 transition-all duration-500 ${scrolled ? 'bg-[#f7f4ef]/95 backdrop-blur-md shadow-sm border-b border-[#e8e0d0] py-3' : 'py-5'}`}>
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          <a href="#" className="flex items-center gap-2.5 font-serif text-xl text-[#1a1208]">
+          <a href="#" className={`flex items-center gap-2.5 font-serif text-xl transition-colors ${scrolled ? 'text-[#1a1208]' : 'text-[#f7f4ef]'}`}>
             <svg viewBox="0 0 32 32" className="w-6 h-6" fill="none" stroke="#b8860b" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
               <path d="M6 15L16 6l10 9" /><path d="M9 14v11h14V14" /><path d="M14 25v-6h4v6" />
             </svg>
@@ -215,7 +215,7 @@ export default function App() {
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className="text-sm text-[#8a7a60] hover:text-[#b8860b] transition-colors font-medium font-sans"
+                className={`text-sm hover:text-[#b8860b] transition-colors font-medium font-sans ${scrolled ? 'text-[#8a7a60]' : 'text-[#e8e0d0]'}`}
               >
                 {item}
               </a>
